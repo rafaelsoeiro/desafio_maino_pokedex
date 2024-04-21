@@ -4,18 +4,18 @@
       <img class="logo" src=".././assets/pokedex-logo.png" alt="">
       <span>Pokedex - Mainô challenge</span> 
     </router-link> 
-    <!-- <slot></slot> -->
+    <slot></slot>
     <nav>
-      <router-link to="/">Home</router-link>  
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Pokedex</router-link>  
+      <router-link to="/about">Sobre</router-link>
     </nav>
+    <SelectIdioma/>
   </header>
 </template>
 
-<script>
-  export default{
-    name:'Header'
-  }
+<script setup>
+import { RouterLink } from 'vue-router';
+import SelectIdioma from '@/components/SelectIdioma.vue'
 </script>
 
 <style scoped>
@@ -48,9 +48,5 @@
   nav a{
     font-size: 1.5rem;
     margin-left: 10px;
-  }
-  nav a:hover{
-    font-size: 1.55rem;
-
   }
 </style>
