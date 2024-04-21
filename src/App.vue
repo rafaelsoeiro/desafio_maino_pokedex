@@ -1,22 +1,14 @@
 <template>
-  <Header>
-    
-  </Header>
-  <div class="container">
-    <router-view/>
+  <div>
+    <Header />
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<script>
-  import Header from '@/components/Header.vue';
-
-
-export default {
-  name: 'App',
-  components: {
-    Header,
-  }
-}
+<script setup>
+import Header from '@/components/Header.vue';
 </script>
 
 <style>
@@ -94,7 +86,7 @@ export default {
   .btn {
     width: max-content;
     display: inline-block;
-    color: var(--color-primary);
+    background-color: var(--color-primary);
     padding: 0.75rem 1.2rem;
     border-radius: 0.4rem;
     cursor: pointer;
@@ -103,9 +95,9 @@ export default {
   }
 
   .btn:hover {
-    background: var(--color-white);
-    color: var(--color-bg);
-    border-color: transparent;
+    color: var(--color-white);
+    background: var(--color-bg);
+    border-color: var(--color-primary-variant);
   }
 
   .btn-primary {
@@ -130,11 +122,5 @@ export default {
     .container {
         width: var(--container-width-sm);
     }
-
-    section>h2 {
-        margin-bottom: 2px;
-    }
   }
-
-
 </style>
