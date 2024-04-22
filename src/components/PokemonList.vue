@@ -11,7 +11,7 @@
         </div> 
       </div>
     </div>
-    <button class="btn jersey-25-regular">Carregar</button>
+    <button class="btn jersey-25-regular" @click="loadMorePokemons">Carregar</button>
   </div>
 </template>
 
@@ -24,9 +24,9 @@
     baseUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/'
   });
 
-  const pokemons = computed(() => {
-    return store.state.pokemons;
-  });
+
+  const pokemons = computed(() => store.state.pokemons);
+
 
   const getPokemonImageUrl = (pokemon) => {
     if (pokemon && pokemon.url) {
@@ -46,7 +46,21 @@
       return {abilites:pokemonInfo.abilities,moves: pokemonInfo.moves,species:pokemonInfo.species}
     })
   }
+
+  const loadMorePokemons = () => {
+    store.commit('setPagination',store.state.pagination.limit);
+    // Chama a action fetchPokeapi
+    store.dispatch('fetchPokeapi',store.state.pagination.offset)
+      .then(() => {
+        console.log('Dados dos pokémons carregados com sucesso! 2');
+      })
+      .catch(error => {
+        console.error('Erro ao carregar os dados dos pokémons:', error);
+      });
+  };
 </script>
+
+
 
 <style scoped>
   .cardsContainer {
