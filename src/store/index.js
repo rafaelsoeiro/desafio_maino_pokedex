@@ -3,10 +3,10 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     pagination:{
-      limit:18,
+      limit:20,
       offset:0,
     },
-    pokemons:[{}],
+    pokemons:[],
     idioma:[
       {}
     ],
@@ -15,17 +15,29 @@ export default createStore({
   },
   mutations: {
     setPokemons(state, pokemons) {
-      state.pokemons = pokemons
+      state.pokemons.push(...pokemons)
     },
     setIdioma(state, idioma) {
       state.idioma = idioma
     },
-    handleLoadMorePokemons(){
-      state.pagination.offset += state.pagination.limit;
-      state.pagination.limit += 18;
-    }
+    setPagination(state,newOffset){
+      console.log(state.pagination)
+      state.pagination.offset += newOffset;
+      console.log(state.pagination)
+      console.log(state.pokemons)
+    },
+
   },
   actions: {
+    fetchPokeapi({ commit },offset){
+      fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log('fetchPokeapi')
+        commit('setPokemons', data.results);
+      })
+      .catch(err => console.error(err));
+    }
   },
   modules: {
   }
