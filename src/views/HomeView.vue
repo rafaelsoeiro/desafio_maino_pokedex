@@ -5,21 +5,24 @@
 
 <script setup>
   import PokemonList from '@/components/PokemonList.vue';
-  import { onMounted, reactive ,ref} from 'vue';
+  import { computed, onMounted, reactive ,ref} from 'vue';
   import { useStore } from 'vuex';
 
   const store = useStore();
-  let pokemons = reactive([]);
 
 
   const loadPokemons = () => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=${store.state.pagination.limit}&offset=${store.state.pagination.offset}`)
-      .then(res => res.json())
-      .then(data => {
-        store.commit('setPokemons', data.results);
-        pokemons.value = data.results;
+    if(store.state.pokemons.length!=0){
+      return
+    }
+    store.dispatch('fetchPokeapi',store.state.pagination.offset)
+      .then(() => {
+        console.log('Dados dos pokémons carregados com sucesso!');
       })
-      .catch(err => console.error(err));
+      .catch(error => {
+        console.error('Erro ao carregar os dados dos pokémons:', error);
+      });
   };
   onMounted(loadPokemons);
+
 </script>
