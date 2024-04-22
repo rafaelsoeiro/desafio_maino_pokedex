@@ -21,10 +21,7 @@ export default createStore({
       state.idioma = idioma
     },
     setPagination(state,newOffset){
-      console.log(state.pagination)
       state.pagination.offset += newOffset;
-      console.log(state.pagination)
-      console.log(state.pokemons)
     },
 
   },
@@ -33,7 +30,6 @@ export default createStore({
       fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`)
       .then(res => res.json())
       .then(data => {
-        console.log('fetchPokeapi')
         commit('setPokemons', data.results);
       })
       .catch(err => console.error(err));
