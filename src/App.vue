@@ -32,7 +32,7 @@ import Header from '@/components/Header.vue';
     --color-white: #fff;
     --color-light: rgba(255, 255, 255, 0.4);
 
-    --transition: all 400ms ease;
+    --transition: all 400ms ease-in-out;
 
     --container-width-lg: 75%;
     --container-width-md: 70%;
@@ -56,9 +56,9 @@ import Header from '@/components/Header.vue';
     
   }
   .jersey-25-regular {
-  font-family: "Jersey 25", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Jersey 25", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
 
   .container {
@@ -107,7 +107,7 @@ import Header from '@/components/Header.vue';
 
   img {
     display: block;
-    width: 100%;
+    /* width: 100%; */
     object-fit: cover;
   }
 
