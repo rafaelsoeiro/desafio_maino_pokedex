@@ -1,19 +1,17 @@
 <template>
   <li>
     <div class="cardImageContainer">
-        <img :src="getPokemonImageUrl(baseUrl)" :alt="name">
-      </div>
-      <div class="cardContainerTitle">
-        <h3 class="jersey-25-regular">{{ name }}</h3>
-        <button class="btnCardPokemon" @click="loadPokemonInfo(baseUrl)">Info</button>
-      </div> 
+      <img :src="getPokemonImageUrl(baseUrl)" :alt="name">
+    </div>
+    <div class="cardContainerTitle">
+      <h3 class="jersey-25-regular">{{ name }}</h3>
+      <button class="btnCardPokemon" @click="loadPokemonInfo(baseUrl)">Info</button>
+    </div> 
   </li>
-  
 </template>
 
 <script>
   export default {
-
     props:{
       name: String,
       imgUrl: String,
