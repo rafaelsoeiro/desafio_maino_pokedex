@@ -24,5 +24,4 @@
       });
   };
   onMounted(loadPokemons);
-
 </script>

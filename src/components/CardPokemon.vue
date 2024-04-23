@@ -1,11 +1,13 @@
 <template>
   <li>
     <div class="cardImageContainer">
-      <img :src="getPokemonImageUrl(baseUrl)" :alt="name">
+      <img :src="getPokemonImageUrl(pokemon.id)" :alt="name">
     </div>
     <div class="cardContainerTitle">
-      <h3 class="jersey-25-regular">{{ name }}</h3>
-      <button class="btnCardPokemon" @click="loadPokemonInfo(baseUrl)">Info</button>
+      <h3 class="jersey-25-regular">{{ pokemon.name }} </h3>
+      <small>{{ pokemon.type[0].type.name }}</small>
+      <!-- <p>{{ pokemon.type[1].type.name }}</p> -->
+      <button class="btnCardPokemon" @click="loadPokemonInfo(pokemon.id)">Info</button>
     </div> 
   </li>
 </template>
@@ -13,16 +15,12 @@
 <script>
   export default {
     props:{
-      name: String,
-      imgUrl: String,
-      baseUrl: String
+      pokemon: Object,
     },
     setup(props) {
-      const name= props.name;
-      const baseUrl = props.baseUrl;
+      const pokemon = props.pokemon
       return{
-        name,
-        baseUrl,
+        pokemon
       }
     },
     methods:{
@@ -37,13 +35,10 @@
           console.error('Error loading Pokemon info:', error);
         });
       },
-      getPokemonImageUrl(baseUrl){
+      getPokemonImageUrl(pokemonID){
         const baseUrlSvg = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/';
-        if (baseUrl) {
-          const pokemonId = baseUrl.split('/')[6];
-          if (pokemonId) {
-            return baseUrlSvg + pokemonId + '.svg';
-          }
+        if (pokemonID) {
+          return baseUrlSvg + pokemonID + '.svg';
         }
         return ''; 
       }
